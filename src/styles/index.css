@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/*
+ * ServiceFinder's business-app theme, lifted from the Business screens
+ * (B01–B28) and the sign-in screen (C25) of "Platform Screen Pack.dc.html"
+ * — the same hex values, type and radii, measured from the rendered
+ * mockup rather than approximated.
+ *
+ * It shares the back office's language — warm paper, near-black ink, one
+ * deep teal for everything actionable, Libre Franklin for words and small
+ * uppercase Roboto Mono for labels, table headers, pills and IDs — with
+ * the business screens' own differences: a near-black sidebar, a white
+ * header bar, and rounded-rectangle buttons (10–14px) rather than pills.
+ *
+ * Registered via Tailwind v4's @theme so the app gets first-class
+ * utilities (bg-tn-surface, text-tn-muted, font-mono, …) instead of raw
+ * values scattered through JSX. Re-theming means editing values here.
+ */
+@theme {
+  --font-sans: "Libre Franklin", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Surfaces */
+  --color-tn-page: #fdfbf7; /* the content area behind every card */
+  --color-tn-paper: #ffffff; /* cards, tables, inputs, the header bar */
+  --color-tn-subtle: #faf8f3; /* a settings nav item that's selected, a row on hover */
+  --color-tn-hover: #f6f2eb;
+  --color-tn-chrome: #f3eee6;
+
+  /* The sidebar (B01) */
+  --color-tn-side: #16150f;
+  --color-tn-side-active: #2a2821;
+  --color-tn-side-text: #a9a192;
+  --color-tn-side-label: #8f877a;
+  --color-tn-side-chip: #e8e2d6;
+
+  /* Lines */
+  --color-tn-border: #e2dcd2; /* the app frame, dialogs */
+  --color-tn-card-border: #e7e1d7; /* cards, tables, the settings nav's edge */
+  --color-tn-divider: #f2ede5; /* rows inside a card */
+  --color-tn-input-border: #d9d2c6;
+  --color-tn-input-border-hover: #c9c0b1;
+  --color-tn-outline: #cfc7ba; /* a secondary button on the sign-in screen */
+
+  /* Text — darkest to lightest */
+  --color-tn-ink: #16150f;
+  --color-tn-body: #3b382f;
+  --color-tn-muted: #57534a;
+  --color-tn-faint: #6e6759;
+
+  /* The one accent */
+  --color-tn-accent: #0e7c66;
+  --color-tn-accent-hover: #0a6654;
+  --color-tn-accent-deep: #0a5e4e;
+  --color-tn-accent-bg: #e4f0eb;
+  --color-tn-accent-mid: #bddfd3;
+
+  /* Status */
+  --color-tn-neutral-bg: #ede7dd;
+  --color-tn-warning: #9a4509;
+  --color-tn-warning-ink: #7a3a0b;
+  --color-tn-warning-bg: #fbede1;
+  --color-tn-warning-border: #f0d9c2;
+  --color-tn-danger: #9e2b2b;
+  --color-tn-danger-hover: #7f2222;
+  --color-tn-danger-bg: #f7e4e4;
+  --color-tn-error-border: #c8524d;
+
+  /* Controls */
+  --color-tn-disabled-bg: #e7e1d7;
+  --color-tn-backdrop: rgb(22 21 15 / 0.4);
+
+  /* Elevation */
+  --shadow-frame: 0 1px 2px rgb(20 18 12 / 0.05), 0 14px 34px rgb(20 18 12 / 0.06);
+  --shadow-dialog: 0 1px 2px rgb(20 18 12 / 0.06), 0 30px 70px -20px rgb(20 18 12 / 0.35);
+}
+
+/*
+ * In the base layer, not unlayered: unlayered CSS beats every Tailwind
+ * utility regardless of specificity, so a bare `a { color }` here would
+ * paint every NavLink teal no matter what class it carries.
+ */
+@layer base {
+  body {
+    margin: 0;
+    background-color: var(--color-tn-page);
+    color: var(--color-tn-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--color-tn-accent);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-tn-accent-deep);
+    text-decoration: underline;
+  }
+
+  button:focus-visible,
+  select:focus-visible,
+  input[type="checkbox"]:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--color-tn-accent);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes tn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
